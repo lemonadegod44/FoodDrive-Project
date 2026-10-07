@@ -1,5 +1,6 @@
 import os.path
 
+#Inventory Items
 
 basket_items = {"Frozen Ham": 50,
                 "Frozen Turket": 50,
@@ -35,6 +36,8 @@ pantry_only = {"Canned Meats": 10,
 
                 }
 
+#File update
+
 if not os.path.exists("inventory.txt"):
     with open("inventory.txt", "w") as file:
 
@@ -46,3 +49,11 @@ for item in pantry_only:
             file.write(f"{item},0\n")
 
 print("Inventory file is ready.")
+
+
+#Class Product
+
+class Product:
+    def __init__(self, name, points, qty):
+        self.name
+        self.points
