@@ -23,8 +23,9 @@ Cake Mix and Icing,0
 Cooking Oil,0
 Mac N Cheese,0
 
-Canned Meat,0
-Peanut Butter,0
+PANTRY ITEMS
+Canned Meats,0
+Peant Butter,0
 Boxed Meal Kits,0
 Canned Soup,0
 Quick Meals,0
