@@ -103,27 +103,30 @@ class Inventory:
                 return
         print(f"Product {name} stock is not available in inventory.")
 
-
-
-
-#Test
-
-p1 = Product("Frozen Ham", 50, 1)
-p2 = Product("Canned Meats", 10, 1)
-
+    #Total Inventory Value
+    def total_inventory_value(self):
+        total = 0
+        for product in self.products:
+            total += product.points * product.qty
+        print(f"Total inventory value is {total}")
 
 store = Inventory()
-store.add_product(p1)
-store.add_product(p2)
 
-store.update_stock("Frozen Ham", 14)
-store.update_stock("Ball", 14)
+#Food Inventory
 
-#store.view_products()
+print("-----------FOOD DRIVE-----------")
+print("1.Add Item")
+print("2.Update Stock")
+print("3.View Items")
+print("4.Total Inventory Value")
 
-"""
-p1.display_info()
-p2.display_info()
-p1.update_stock(12)
-p1.display_info()
-"""
+
+#User Input
+choice = input("Enter your choice: ")
+
+if choice == "1":
+    name = input("Enter Food Name: ")
+    points = float(input("Points: "))
+    qty = int(input("Quantity: "))
+    product = Product(name, points, qty)
+    store.add_product(product)
