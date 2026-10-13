@@ -113,20 +113,39 @@ class Inventory:
 store = Inventory()
 
 #Food Inventory
+while True:
+    print("-----------FOOD DRIVE-----------")
+    print("1.Add Item")
+    print("2.Update Stock")
+    print("3.View Items")
+    print("4.Total Inventory Value")
+    print("5.Exit")
 
-print("-----------FOOD DRIVE-----------")
-print("1.Add Item")
-print("2.Update Stock")
-print("3.View Items")
-print("4.Total Inventory Value")
 
+    #User Input
+    choice = input("Enter your choice: ")
 
-#User Input
-choice = input("Enter your choice: ")
+    if choice == "1":
+        name = input("Enter Food Name: ")
+        points = float(input("Points: "))
+        qty = int(input("Quantity: "))
+        product = Product(name, points, qty)
+        store.add_product(product)
 
-if choice == "1":
-    name = input("Enter Food Name: ")
-    points = float(input("Points: "))
-    qty = int(input("Quantity: "))
-    product = Product(name, points, qty)
-    store.add_product(product)
+    elif choice == "2":
+        name = input("Product Name: ")
+        change = int(input("Quantity to add/remove: "))
+        store.update_stock(name,change)
+
+    elif choice == "3":
+        store.view_products()
+
+    elif choice == "4":
+        store.total_inventory_value()
+    
+    elif choice == "5": 
+        print("Exiting Inventory.")
+        break
+
+    else:
+        print("Invalid choice.")
