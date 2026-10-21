@@ -1,4 +1,5 @@
 import os.path
+from datetime import datetime
 
 #Inventory Items
 
@@ -41,11 +42,13 @@ if not os.path.exists("inventory.txt"):
     with open("inventory.txt", "w") as file:
 
         for item in basket_items:
-            file.write(f"{item},0\n")
+            file.write(f"{item},{points},0\n")
+
+        file.write("PANTRY ITEMS\n")
 
         for item in pantry_only:
             file.write("\nPANTRY ITEMS\n")
-            file.write(f"{item},0\n")
+            file.write(f"{item},{points},0\n")
 
 
 #Class Product
@@ -73,12 +76,12 @@ class Inventory:
     #Add Product
     def add_product(self,product):
         #checks to see if an item already exists
-            for p in self.products:                
-                if p.name.lower() == product.name.lower():
-                    print (f"Product {product.name} already exists.")
-                    return
+        for p in self.products:                
+            if p.name.lower() == product.name.lower():
+                print (f"Product {product.name} already exists.")
+                return
 
-
+            #Adds product if doesn't exist
             self.products.append(product)
             print(f"Product {product.name} has been successfully added.")
     
@@ -99,8 +102,14 @@ class Inventory:
     def update_stock(self, name, change):
         for product in self.products:
             if product.name.lower() == name.lower():
+
                 product.update_stock(change)
+
+                #Automatically Save
+                self.save_inventory()
+
                 return
+
         print(f"Product {name} stock is not available in inventory.")
 
     #Total Inventory Value
@@ -110,7 +119,66 @@ class Inventory:
             total += product.points * product.qty
         print(f"Total inventory value is {total}")
 
+
+    #Save Inventory
+    def save_inventory(self):
+        with open("inventory.txt", "w") as file:
+
+            #Save basket items
+            for products in self.products:
+                file.write(
+                    f"{product.name},{product.points},{product.qty}\n"
+                )
+        
+        #Save Current Date and Time
+        save_time = datetime.now().astimezone().strftime(
+            "%m/%d/%Y %I:%M:%S %p"
+        )
+        
+        print(f"Inventory successfully saved at {save_time}")
+
 store = Inventory()
+#Load Inventory
+def load_inventory(self):
+    try:
+        with open("inventory.txt", "r") as file:
+            for line in file:
+                line = line.strip()
+
+            #Skip empty lines and headings
+            if not line or line.startswith("Last Saved:") \
+                or line == "FOOD DRIVE INVENTORY" \
+                or line == "PANTRY ITEMS":
+                continue
+            parts = line.split(",")
+
+            if len(parts) != 3:
+                continue
+            name = parts[0]
+            points = float(parts[1])
+            qty = int(parts[2])
+            
+            product = Product(name, points, qty)
+            self.add_products(product)
+
+        print("Inventory loaded successfully")
+
+    except FileNotFoundError:
+        print("Inventory file not found. Creating a new inventory")
+
+        #Load basket items
+        for item, points in basket_items
+
+
+#Add basket items to inventory
+for items, points in basket_items.items():
+    product = Product(items, points, 0)
+    store.add_product(product)
+
+#Add pantry items to inventory
+for item, points in pantry_only.items():
+    product = Product(items, points, 0)
+
 
 #Food Inventory
 while True:
@@ -143,7 +211,8 @@ while True:
     elif choice == "4":
         store.total_inventory_value()
     
-    elif choice == "5": 
+    elif choice == "5":
+        store.save_inventory() 
         print("Exiting Inventory.")
         break
 
