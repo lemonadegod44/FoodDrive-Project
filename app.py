@@ -37,19 +37,18 @@ pantry_only = {"Canned Meats": 10,
                 }
 
 #File update
-
 if not os.path.exists("inventory.txt"):
-    with open("inventory.txt", "w") as file:
+    with open("inventory.txt","w") as file:
 
-        for item in basket_items:
+        file.write("BASKET ITEMS\n")
+
+        for item, points in basket_items.items():
             file.write(f"{item},{points},0\n")
 
         file.write("PANTRY ITEMS\n")
 
-        for item in pantry_only:
-            file.write("\nPANTRY ITEMS\n")
+        for item, points in pantry_items.items():
             file.write(f"{item},{points},0\n")
-
 
 #Class Product
 
@@ -138,36 +137,6 @@ class Inventory:
         print(f"Inventory successfully saved at {save_time}")
 
 store = Inventory()
-#Load Inventory
-def load_inventory(self):
-    try:
-        with open("inventory.txt", "r") as file:
-            for line in file:
-                line = line.strip()
-
-            #Skip empty lines and headings
-            if not line or line.startswith("Last Saved:") \
-                or line == "FOOD DRIVE INVENTORY" \
-                or line == "PANTRY ITEMS":
-                continue
-            parts = line.split(",")
-
-            if len(parts) != 3:
-                continue
-            name = parts[0]
-            points = float(parts[1])
-            qty = int(parts[2])
-            
-            product = Product(name, points, qty)
-            self.add_products(product)
-
-        print("Inventory loaded successfully")
-
-    except FileNotFoundError:
-        print("Inventory file not found. Creating a new inventory")
-
-        #Load basket items
-        for item, points in basket_items
 
 
 #Add basket items to inventory
