@@ -45,14 +45,17 @@ if not os.path.exists("inventory.txt"):
         for item, points in basket_items.items():
             file.write(f"{item},{points},0\n")
 
-        file.write("PANTRY ITEMS\n")
+        file.write("\nPANTRY ITEMS\n")
 
-        for item, points in pantry_items.items():
+        for item, points in pantry_only.items():
             file.write(f"{item},{points},0\n")
+    
+    print("File has been created.")
 
 #Class Product
 
 class Product:
+
     def __init__(self, name, points, qty):
         self.name = name
         self.points = points
@@ -72,6 +75,9 @@ class Inventory:
     def __init__(self):
         self.products = []
 
+    def add_product(self, product):
+        self.products.append(product)
+
     #Add Product
     def add_product(self,product):
         #checks to see if an item already exists
@@ -80,19 +86,18 @@ class Inventory:
                 print (f"Product {product.name} already exists.")
                 return
 
-            #Adds product if doesn't exist
-            self.products.append(product)
-            print(f"Product {product.name} has been successfully added.")
+        #Adds product if doesn't exist
+        self.products.append(product)
     
     #View Products
     def view_products(self):
         if not self.products:
             print("The inventory is empty.")
+            return
         
-        else:
-            print("-----INVENTORY LIST-----")
-            for product in self.products:
-                product.display_info()
+        print("-----INVENTORY LIST-----")
+        for product in self.products:
+            product.display_info()
 
 
 
@@ -136,6 +141,8 @@ class Inventory:
         
         print(f"Inventory successfully saved at {save_time}")
 
+
+
 store = Inventory()
 
 
@@ -145,8 +152,9 @@ for items, points in basket_items.items():
     store.add_product(product)
 
 #Add pantry items to inventory
-for item, points in pantry_only.items():
+for items, points in pantry_only.items():
     product = Product(items, points, 0)
+    store.add_product(product)
 
 
 #Food Inventory
@@ -181,7 +189,6 @@ while True:
         store.total_inventory_value()
     
     elif choice == "5":
-        store.save_inventory() 
         print("Exiting Inventory.")
         break
 
