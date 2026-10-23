@@ -106,12 +106,10 @@ class Inventory:
     def update_stock(self, name, change):
         for product in self.products:
             if product.name.lower() == name.lower():
-
                 product.update_stock(change)
 
                 #Automatically Save
                 self.save_inventory()
-
                 return
 
         print(f"Product {name} stock is not available in inventory.")
