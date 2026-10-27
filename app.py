@@ -108,9 +108,9 @@ class Inventory:
             if product.name.lower() == name.lower():
                 product.update_stock(change)
 
-                #Automatically Save
-                self.save_inventory()
-                return
+        #Automatically Save
+        self.save_inventory()
+        return
 
         print(f"Product {name} stock is not available in inventory.")
 
@@ -124,18 +124,28 @@ class Inventory:
 
     #Save Inventory
     def save_inventory(self):
-        with open("inventory.txt", "w") as file:
-
-            #Save basket items
-            for products in self.products:
-                file.write(
-                    f"{product.name},{product.points},{product.qty}\n"
-                )
-        
-        #Save Current Date and Time
         save_time = datetime.now().astimezone().strftime(
             "%m/%d/%Y %I:%M:%S %p"
         )
+
+        with open("inventory.txt", "w") as file:
+
+            #Save basket items
+            file.write("BASKET ITEMS\n")
+
+            for product in self.products:
+                if product.name in basket_items:
+                    file.write(
+                        f"{product.name},{product.points},{product.qty}\n"
+                    )
+            #Save pantry items
+            file.write("\nPANTRY ITEMS\n")
+
+            for product in self.products:
+                if product.name in pantry_only:
+                    file.write(
+                        f"{product.name},{product.points},{product.qty}\n"
+                    )
         
         print(f"Inventory successfully saved at {save_time}")
 

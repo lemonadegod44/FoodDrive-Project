@@ -1,0 +1,32 @@
+BASKET ITEMS
+Frozen Ham,50,0
+Frozen Turket,50,0
+Canned Yams,5,0
+Canned Corn,5,0
+Canned Green Beans,5,0
+Canned Carrots,5,0
+Canned Peas,5,0
+Canned Fruit,5,0
+Canned Pumpkin,5,0
+Canned Milk,5,0
+Instant Mashed Potatoes,8,0
+Potatoes,5,0
+Sugar,15,0
+Flour,10,0
+Cranberry Sauce,5,0
+Pie Crust,8,0
+Pie Filling,5,0
+Stuffing Mix,10,0
+Gravy Mix,1,0
+Bread Mix,5,0
+Cookie Mix,5,0
+Cake Mix and Icing,5,0
+Cooking Oil,8,3
+Mac N Cheese,2,0
+
+PANTRY ITEMS
+Canned Meats,10,0
+Peant Butter,8,0
+Boxed Meal Kits,5,0
+Canned Soup,5,0
+Quick Meals,1,0
