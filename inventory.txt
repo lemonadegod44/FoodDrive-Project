@@ -21,7 +21,7 @@ Gravy Mix,1,0
 Bread Mix,5,0
 Cookie Mix,5,0
 Cake Mix and Icing,5,0
-Cooking Oil,8,3
+Cooking Oil,8,0
 Mac N Cheese,2,0
 
 PANTRY ITEMS
